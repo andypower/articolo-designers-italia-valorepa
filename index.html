@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La composizione del valore mediante formazione, design e trasformazione digitale</title>
+  <meta name="description" content="Esperienza d’uso delle risorse di Designers Italia per favorire l’apprendimento dell’IA, nei corsi INPS ValorePA, erogati dall’Università degli Studi di Basilicata." />
+  <style>
+    :root {
+      --agid-blue: #0059b3;
+      --agid-blue-dark: #003b75;
+      --agid-blue-soft: #eef5ff;
+      --text: #17324d;
+      --muted: #5b7083;
+      --border: #d9e5f2;
+      --bg: #ffffff;
+      --maxw: 980px;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0, 51, 102, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 240px);
+      line-height: 1.7;
+    }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--maxw));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 48px 0 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--agid-blue);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .02em;
+      background: var(--agid-blue-soft);
+      border: 1px solid #d3e4fb;
+      border-radius: 999px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      color: var(--agid-blue-dark);
+      max-width: 12ch;
+    }
+
+    .subtitle {
+      font-size: clamp(18px, 2.4vw, 24px);
+      color: var(--muted);
+      max-width: 45ch;
+      margin-bottom: 22px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 8px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--agid-blue-dark);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card {
+      padding: 22px 24px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .article {
+      padding: 30px 0 64px;
+    }
+
+    article {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(22px, 3vw, 44px);
+      box-shadow: var(--shadow);
+    }
+
+    article h2 {
+      margin-top: 38px;
+      margin-bottom: 10px;
+      color: var(--agid-blue-dark);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.15;
+    }
+
+    article p {
+      margin: 0 0 18px;
+      font-size: 18px;
+    }
+
+    article strong { color: var(--agid-blue-dark); }
+    article em { color: #21466f; }
+
+    .carousel-block {
+      margin: 28px 0 34px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #fbfdff, #f5faff);
+      overflow: hidden;
+    }
+
+    .carousel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.8);
+    }
+
+    .carousel-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--agid-blue-dark);
+      letter-spacing: .01em;
+    }
+
+    .carousel-status {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .carousel-viewport {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #eaf3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .35s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf5ff;
+    }
+
+    .carousel-slide.active { opacity: 1; }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: white;
+    }
+
+    .carousel-empty {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 56ch;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      gap: 12px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    .carousel-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--agid-blue-dark);
+      border-radius: 999px;
+      min-width: 40px;
+      height: 40px;
+      padding: 0 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: var(--agid-blue-soft); }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 0;
+      background: #c2d7f2;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dot.active { background: var(--agid-blue); }
+
+    .note {
+      margin-top: 30px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--agid-blue);
+      background: var(--agid-blue-soft);
+      border-radius: 0 14px 14px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 20px 0 50px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      background: #eff6ff;
+      border: 1px solid #d7e6fb;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: .95em;
+    }
+
+    @media (max-width: 720px) {
+      article p { font-size: 17px; }
+      .carousel-controls { flex-direction: column; align-items: stretch; }
+      .carousel-nav { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Designers Italia · ValorePA · Università degli Studi di Basilicata</div>
+      <h1>La composizione del valore mediante formazione, design e trasformazione digitale</h1>
+      <div class="subtitle">L'esperienza d’uso delle risorse di Designers Italia per favorire l’apprendimento dell’IA, nei corsi INPS #ValorePA, erogati dall’Università degli Studi di Basilicata.</div>
+      <div class="meta">
+        <span class="tag">Formazione</span>
+        <span class="tag">Intelligenza artificiale</span>
+        <span class="tag">Co-progettazione</span>
+        <span class="tag">Data driven design</span>
+        <span class="tag">Visualizzazione dati</span>
+      </div>
+      <div class="intro-card card">
+        Pagina pronta per GitHub Pages. I caroselli vengono generati in automatico leggendo le immagini presenti nelle cartelle <code>Carosello 1</code>, <code>Carosello 2</code>, ecc. tramite GitHub API. È sufficiente pubblicare questo file come <code>index.html</code> nella root del repository e valorizzare i parametri di configurazione nello script.
+      </div>
+    </div>
+  </header>
+
+  <main class="article">
+    <div class="wrap">
+      <article>
+        <h2>Introduzione</h2>
+        <p>Che cosa accade quando un percorso di formazione su temi quali la trasformazione digitale, l’intelligenza artificiale, la public governance ed il public value mette insieme, nella stessa aula, dirigenti e funzionari di amministrazioni diverse, strumenti aperti, metodi di design e attività di co-progettazione? L’esperienza dei corsi <strong>INPS</strong> <strong>ValorePA</strong>: <strong>Vulture</strong> e <strong>Pollino</strong>, erogati dall’<strong>Università degli Studi di Basilicata</strong>, offre una risposta concreta. I corsi hanno coinvolto circa un centinaio di dipendenti pubblici provenienti da realtà molto diverse fra loro: Regione, Comuni, ASL, aziende ospedaliere, biblioteche, centri culturali, protezione civile, Ispettorato nazionale del lavoro, Agenzia delle Entrate, centri di ricerca, università. In questo contesto eterogeneo, la progettazione didattica non si è limitata a trasferire conoscenze, ha creato uno spazio comune di apprendimento orientato al <strong>valore pubblico</strong>, al confronto tra esperienze e alla sperimentazione pratica.</p>
+        <p>L’elemento distintivo dell’iniziativa è stato l’uso delle risorse di <strong>Designers Italia</strong> come infrastruttura metodologica e culturale per rendere accessibili temi complessi, come il dato, il service design e l’assistente virtuale basato su IA, a partecipanti con competenze, ruoli e contesti organizzativi differenti. Questo articolo racconta dell’esperienza di co-creazione di valore, dei temi della formazione, considera l’eterogeneità delle amministrazioni coinvolte, evidenzia i benefici emersi offrendo una chiave di lettura su come il contributo delle risorse di Designers Italia sia stato un elemento distintivo nel ridurre le barriere di apprendimento e nel favorire la condivisione nel network.</p>
+
+        <h2>Un’aula composta da amministrazioni diverse, unite da problemi comuni</h2>
+        <p>Uno dei punti di forza dei corsi Vulture e Pollino è stato quello della composizione della platea. I partecipanti provenivano da <strong>enti diversi per missione, scala e organizzazione</strong>, si sono trovati accomunati da sfide simili: migliorare i servizi, usare meglio i dati, comprendere il ruolo dell’IA, rendere più leggibili i contenuti e collaborare in modo più efficace tra strutture pubbliche. La presenza di enti territoriali, sanitari, culturali, fiscali, universitari e di controllo ha trasformato il percorso formativo in un laboratorio inter-istituzionale in cui il paradigma del <em>Government as a Platform</em>, prima illustrato, ha poi preso vita.</p>
+        <p>In molti casi, i dipendenti pubblici affrontano percorsi formativi chiusi dentro il proprio perimetro amministrativo. In questo caso, invece, la varietà dei partecipanti ha consentito di <strong>mettere a confronto bisogni diversi ma trasferibili</strong>, facendo emergere analogie tra processi che, solo in apparenza, appartengono a mondi separati: si è trattato quindi di <em>demolire i silos organizzativi</em>. Per svolgere questa azione, il docente ha assunto il ruolo del vate, supportato dalle teorie del <em>Process Management</em> si è fatto interprete delle complessità delle amministrazioni, suggerendo spunti e producendo esempi pratici di mappatura e reingegnerizzazione dei processi. L’obiettivo è stato quello di orientare i partecipanti al Valore Pubblico, declinato sotto forma di output, outcome e impatto da erogare come servizi condivisi per il cittadino.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 1">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 1</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button" aria-label="Immagine precedente">←</button>
+              <button class="btn next" type="button" aria-label="Immagine successiva">→</button>
+            </div>
+            <div class="dots" aria-label="Selettore immagini"></div>
+          </div>
+        </div>
+
+        <p>Dopo il confronto <em>razionale</em>, sono seguite le sessioni progettuali dei servizi, dedicate rispettivamente al <em>data sharing</em> tra amministrazioni e alla progettazione di un <em>assistente virtuale</em>. La visualizzazione di dati pubblici o la semplificazione di contenuti informativi sono attività che cambiano forma a seconda del contesto, ma poggiano su principi comuni su cui si è potuto fare leva: chiarezza, interoperabilità, comprensibilità, orientamento all’utente, inclusione, fiducia ed equità.</p>
+
+        <h2>La progettazione formativa come leva di valore pubblico</h2>
+        <p>Il beneficio principale della progettazione non è stato soltanto didattico. Il percorso, strutturato con lezioni <strong>pratico-teoriche</strong> e con sessioni di <strong>learning by doing</strong>, ha consentito ai partecipanti di lavorare su casi, ipotesi di servizio, contesti d’uso e modelli di interazione. Questo impianto ha prodotto un doppio risultato: da un lato ha consolidato la comprensione teorica; dall’altro ha reso i contenuti immediatamente trasferibili nel lavoro quotidiano.</p>
+        <p>La coesistenza tra teoria e pratica ha favorito la <strong>co-progettazione</strong> tra enti diversi. I partecipanti non si sono limitati ad apprendere nozioni, ma hanno sperimentato la costruzione condivisa di soluzioni, mettendo in comune prospettive, vincoli e opportunità. In questo senso, il valore generato non riguarda solo chi ha frequentato il corso, ma anche le amministrazioni di provenienza, che possono beneficiare di personale più consapevole, capace di leggere i problemi con una logica di progetto e di dialogare con altre strutture pubbliche.</p>
+        <p>Per cittadini e imprese questo approccio produce benefici indiretti, ma rilevanti. Una PA che impara a progettare meglio i servizi, a visualizzare con chiarezza i dati, a <strong>comprendere i benefici dell’Intelligenza Artificiale</strong> nei processi amministrativi ed a servizio dei cittadini, riuscendo così ad impostare correttamente un assistente virtuale o a definire il contesto d’uso di un servizio digitale, è una PA che può offrire interazioni più semplici, tempi più comprensibili, contenuti più accessibili e decisioni più trasparenti. Il <strong>feedback reciproco</strong> tra discenti, inoltre, ha stimolato una riflessione continua sulla qualità delle soluzioni elaborate, rafforzando quella cultura del miglioramento incrementale che è centrale nell’evoluzione dei processi e che in alcuni casi puo’ sfociare nell’innovazione radicale a supporto della trasformazione digitale.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 2">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 2</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport"><div class="carousel-track"></div></div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button" aria-label="Immagine precedente">←</button>
+              <button class="btn next" type="button" aria-label="Immagine successiva">→</button>
+            </div>
+            <div class="dots"></div>
+          </div>
+        </div>
+
+        <p>La <em>Teoria del Cambiamento</em> ha sorretto la fase di progettazione e sperimentazione tecnologica. Infatti, non si è trattato di un mero esercizio di introduzione di tecnologie all’interno degli enti. Con il supporto dei principi base del Piano Triennale per l’Informatica nella Pubblica Amministrazione si è puntato sulla capacità delle amministrazioni di formalizzare la propria strategia all’interno del PIAO sotto forma di risultati di output, outcome, impatto ed indicatori di risultato.</p>
+
+        <h2>Designers Italia come linguaggio comune della PA</h2>
+        <p>Il contributo di <strong>Designers Italia</strong> è stato particolarmente significativo perché ha fornito un insieme di risorse capaci di parlare un linguaggio immediatamente riconoscibile per la Pubblica Amministrazione. Questo ha permesso di superare uno dei problemi più frequenti nella formazione sull’innovazione: l’uso di modelli generici, spesso mutuati dal settore privato, non sempre adatti ai vincoli, alle responsabilità e ai contesti d’uso tipici delle amministrazioni pubbliche.</p>
+        <p>Nei corsi Vulture e Pollino, Designers Italia ha funzionato come una <strong>base comune di riferimento</strong>. I materiali sono stati utilizzati per sviluppare workshop ed esercitazioni pratiche e hanno consentito di affrontare temi differenti mantenendo una coerenza di approccio: dal dato all’interfaccia, dal contesto d’uso alla definizione del profilo di un assistente virtuale. Questo è uno degli aspetti di maggior pregio dell’esperienza: la possibilità di lavorare su risorse nate per la PA e pensate per il riuso, capaci quindi di sostenere una pluralità di casi senza perdere aderenza al contesto pubblico.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 3">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 3</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport"><div class="carousel-track"></div></div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button">←</button>
+              <button class="btn next" type="button">→</button>
+            </div>
+            <div class="dots"></div>
+          </div>
+        </div>
+
+        <p>L’uso di un “linguaggio universale della PA” ha avuto anche un valore pedagogico. I partecipanti, pur provenendo da amministrazioni molto diverse, hanno trovato nei kit e nei materiali un terreno comune su cui discutere, confrontarsi e produrre elaborati. Il design è stato struttura di mediazione tra competenze diverse e non di <em>abbellimento</em>.</p>
+
+        <h2>Le risorse usate: dati, contesto, contenuti, assistenti virtuali</h2>
+        <p>Tra le risorse di Designers Italia utilizzate nel percorso, un ruolo importante è stato svolto dal materiale formativo su <strong>Visualizzare dati della PA</strong> e su <strong>Design per la trasformazione digitale della PA</strong>. Questi contenuti hanno consentito di introdurre in modo accessibile temi complessi come la lettura del dato, la costruzione di visualizzazioni efficaci, la centralità del contesto d’uso e l’importanza di progettare servizi a partire dai bisogni reali.</p>
+        <p>Accanto a questi materiali, è stato impiegato il <strong>Kit di Analisi del Contesto</strong> per schematizzare il contesto d’uso di un servizio di <em>data sharing</em> fra amministrazioni pubbliche. Si tratta di uno strumento particolarmente utile perché aiuta a mettere ordine tra attori, obiettivi, vincoli, flussi informativi e possibili criticità. In un ambiente formativo, questo tipo di risorsa consente di passare rapidamente dall’idea astratta alla rappresentazione concreta del problema.</p>
+        <p>È stato poi utilizzato il <strong>kit contenuti e linguaggio</strong> per creare il profilo di un assistente virtuale. Anche in questo caso, il valore è stato duplice: da un lato, introdurre il tema dell’IA in modo pragmatico; dall’altro, mostrare che la qualità di un assistente dipende solo in parte dalla tecnologia, e molto anche dalla definizione del tono di voce, delle finalità, dei limiti, delle aspettative d’uso e della chiarezza dei contenuti. L’IA è stata infatti affrontata considerando le caratteristiche peculiari della tecnologia, le implicazioni normative, gli aspetti di governance all’interno della PA e il suo ruolo come componente di un servizio pubblico da progettare con attenzione.</p>
+
+        <h2>Un’esperienza d’uso intuitiva, inclusiva e senza barriere</h2>
+        <p>Uno dei risultati più apprezzabili dell’esperienza riguarda la <strong>facilità d’uso</strong> delle risorse messe a disposizione da Designers Italia. I materiali sono risultati intuitivi, chiari e facilmente integrabili nelle attività di aula e di laboratorio. Questo ha contribuito a ridurre la barriera di apprendimento, soprattutto per partecipanti che non provenivano da ambiti strettamente digitali o progettuali.</p>
+        <p>Un altro elemento decisivo è stata l’attenzione all’<strong>inclusione</strong> e all’uso di <strong>formati aperti</strong>. La disponibilità di tool gratuiti ha reso possibile predisporre rapidamente le postazioni di studio e mettere tutti nelle condizioni di operare senza vincoli di ambiente, licenze software, account o abbonamenti. In un contesto pubblico, questo non è un dettaglio: significa poter attivare percorsi di apprendimento e sperimentazione in modo equo, scalabile e sostenibile.</p>
+        <p>Inoltre, la mancanza di dipendenze da strumenti proprietari ha rafforzato il valore del riuso e dell’autonomia. I partecipanti hanno potuto concentrarsi sui problemi da affrontare e sulle soluzioni da progettare, invece che sulle difficoltà di accesso agli strumenti. In questo senso, le risorse di Designers Italia hanno aiutato a superare una criticità molto concreta: quella per cui, spesso, la formazione sull’innovazione rischia di essere ostacolata da barriere tecniche o organizzative prima ancora che cognitive.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 4">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 4</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport"><div class="carousel-track"></div></div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button">←</button>
+              <button class="btn next" type="button">→</button>
+            </div>
+            <div class="dots"></div>
+          </div>
+        </div>
+
+        <h2>Dall’apprendimento dell’IA alla co-creazione di valore pubblico</h2>
+        <p>L’esperienza dei corsi Vulture e Pollino mostra che l’apprendimento dell’IA nella PA è più efficace quando è collocato dentro un ecosistema di metodi, strumenti e pratiche orientate alla progettazione. Non basta spiegare come funziona un assistente conversazionale o quali sono le potenzialità del dato: occorre mettere i partecipanti nelle condizioni di <strong>usare questi concetti per immaginare e costruire servizi migliori</strong>. La co-progettazione ha reso i partecipanti attori della costruzione del sapere. Designers Italia ha fornito la grammatica comune per rendere questa costruzione più solida, accessibile e replicabile; per tradurre le conoscenze in comportamenti professionali.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 5">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 5</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport"><div class="carousel-track"></div></div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button">←</button>
+              <button class="btn next" type="button">→</button>
+            </div>
+            <div class="dots"></div>
+          </div>
+        </div>
+
+        <h2>Conclusione e ringraziamenti</h2>
+        <p>L’esperienza dei corsi INPS ValorePA Vulture e Pollino, erogati dall’Università degli Studi di Basilicata, dimostra che la formazione pubblica genera risultati più significativi quando unisce <strong>pluralità di amministrazioni, approccio laboratoriale, risorse aperte e metodi di design</strong>. Il coinvolgimento di dipendenti provenienti da enti molto diversi ha trasformato il percorso in uno spazio di apprendimento reciproco e di contaminazione positiva, capace di mettere al centro problemi comuni e soluzioni trasferibili.</p>
+        <p>Con il materiale di Designers Italia si è resa possibile una formazione concreta, inclusiva e immediatamente comprensibile, offrendo materiali e kit capaci di ridurre le barriere di accesso, facilitare il riuso e sostenere la progettazione di servizi pubblici più chiari ed efficaci. L’esperienza d’uso delle risorse è stata semplice e intuitiva, e questo ha permesso ai partecipanti di concentrarsi sulla sostanza del lavoro: analizzare contesti, visualizzare dati, progettare interfacce, definire il profilo di un assistente virtuale, ragionare in termini di esperienza dell’utente e valore pubblico.</p>
+        <p>L’insegnamento principale è che la trasformazione digitale nella PA non si realizza solo introducendo nuove tecnologie, ma costruendo <strong>competenze condivise, linguaggi comuni e ambienti di apprendimento capaci di trasformare la teoria in progetto</strong>. È questa la strada per una PA più consapevole, collaborativa e orientata ai bisogni reali di cittadini, imprese e amministrazioni. Ed è anche l’invito che emerge da questa esperienza: adottare approcci virtuosi di progettazione e formazione non solo migliora l’apprendimento, ma rende più concreto, visibile e riusabile il <strong>valore generato</strong>.</p>
+        <p>Un ringraziamento particolare va al personale a supporto del laboratorio dell’UNIBAS — Oreste D’Alessandro, Francesco Faggella e Giuseppe Vinciguerra — che ha facilitato il deploy dei tool e l’utilizzo degli ambienti operativi. Un grazie anche a Michela Contursi, manager didattico, che ha accolto con entusiasmo la sperimentazione, e al prof. Ugo Erra, coordinatore scientifico e responsabile del programma ValorePA. Un ringraziamento, infine, alle istituzioni INPS e all’Università degli Studi della Basilicata per aver sostenuto e reso possibile questo percorso di formazione, e a Designers Italia ed al Dipartimento per la Trasformazione Digitale per aver offerto gli strumenti alla base di questa esperienza di innovazione.</p>
+
+        <div class="carousel-block" data-carousel-folder="Carosello 6">
+          <div class="carousel-head">
+            <div class="carousel-title">Carosello 6</div>
+            <div class="carousel-status">Caricamento immagini…</div>
+          </div>
+          <div class="carousel-viewport"><div class="carousel-track"></div></div>
+          <div class="carousel-controls">
+            <div class="carousel-nav">
+              <button class="btn prev" type="button">←</button>
+              <button class="btn next" type="button">→</button>
+            </div>
+            <div class="dots"></div>
+          </div>
+        </div>
+
+        <p><strong>Il docente Nazzareno Sileno</strong></p>
+
+        <div class="note">
+          <strong>Come usare questa pagina su GitHub Pages.</strong> Inserisci questo file come <code>index.html</code> nella root del repository. Crea nella root le cartelle <code>Carosello 1</code>, <code>Carosello 2</code>, ecc. e carica dentro ogni cartella tutte le immagini desiderate. Poi, nello script in fondo alla pagina, imposta <code>repoOwner</code>, <code>repoName</code> e <code>branch</code>. Il codice recupererà automaticamente l’elenco dei file immagine da ciascuna cartella e costruirà gli slideshow.
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Template HTML pronto per pubblicazione su GitHub Pages con slideshow automatici basati su cartelle.</div>
+  </footer>
+
+  <script>
+    const config = {
+      repoOwner: 'INSERISCI-OWNER',
+      repoName: 'INSERISCI-NOME-REPO',
+      branch: 'main'
+    };
+
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif'];
+
+    function isImage(name) {
+      const lower = name.toLowerCase();
+      return imageExtensions.some(ext => lower.endsWith(ext));
+    }
+
+    async function listFolderImages(folderName) {
+      const encodedPath = encodeURIComponent(folderName).replace(/%2F/g, '/');
+      const url = `https://api.github.com/repos/${config.repoOwner}/${config.repoName}/contents/${encodedPath}?ref=${config.branch}`;
+      const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+      if (!response.ok) {
+        throw new Error(`GitHub API ${response.status}`);
+      }
+      const items = await response.json();
+      return items
+        .filter(item => item.type === 'file' && isImage(item.name))
+        .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }))
+        .map(item => item.download_url || `https://raw.githubusercontent.com/${config.repoOwner}/${config.repoName}/${config.branch}/${folderName}/${item.name}`);
+    }
+
+    function buildEmptyState(track, status, folderName, error) {
+      track.innerHTML = `<div class="carousel-slide active"><div class="carousel-empty"><strong>${folderName}</strong><br>${error ? 'Impossibile leggere la cartella o nessuna immagine disponibile.' : 'Nessuna immagine trovata.'}<br><br>Controlla che la cartella esista nella root del repository e che i parametri repoOwner, repoName e branch siano corretti.</div></div>`;
+      status.textContent = error ? 'Errore di caricamento' : 'Nessuna immagine';
+    }
+
+    function initCarousel(root, images) {
+      const track = root.querySelector('.carousel-track');
+      const dots = root.querySelector('.dots');
+      const prev = root.querySelector('.prev');
+      const next = root.querySelector('.next');
+      const status = root.querySelector('.carousel-status');
+      let index = 0;
+
+      track.innerHTML = '';
+      dots.innerHTML = '';
+
+      images.forEach((src, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+        slide.innerHTML = `<img src="${src}" alt="Immagine ${i + 1}" loading="lazy" />`;
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Vai all'immagine ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dots.appendChild(dot);
+      });
+
+      const slides = () => Array.from(track.querySelectorAll('.carousel-slide'));
+      const dotNodes = () => Array.from(dots.querySelectorAll('.dot'));
+
+      function render() {
+        slides().forEach((slide, i) => slide.classList.toggle('active', i === index));
+        dotNodes().forEach((dot, i) => dot.classList.toggle('active', i === index));
+        status.textContent = `${index + 1} / ${images.length}`;
+      }
+
+      function goTo(i) {
+        index = (i + images.length) % images.length;
+        render();
+      }
+
+      prev.addEventListener('click', () => goTo(index - 1));
+      next.addEventListener('click', () => goTo(index + 1));
+      render();
+    }
+
+    async function setupCarousels() {
+      const blocks = document.querySelectorAll('[data-carousel-folder]');
+      for (const block of blocks) {
+        const folderName = block.dataset.carouselFolder;
+        const track = block.querySelector('.carousel-track');
+        const status = block.querySelector('.carousel-status');
+        try {
+          const images = await listFolderImages(folderName);
+          if (!images.length) {
+            buildEmptyState(track, status, folderName, false);
+            continue;
+          }
+          initCarousel(block, images);
+        } catch (error) {
+          console.error(folderName, error);
+          buildEmptyState(track, status, folderName, true);
+        }
+      }
+    }
+
+    setupCarousels();
+  </script>
+</body>
+</html>
